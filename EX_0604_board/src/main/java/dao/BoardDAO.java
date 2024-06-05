@@ -28,9 +28,6 @@ public class BoardDAO {
 	}
 	
 	
-
-	
-	
 	//전체 게시물 조회
 	//id : board_list
 	//쿼리문은 ref를 내림차순으로, step을 오름차순으로 조회해주세요
@@ -41,5 +38,26 @@ public class BoardDAO {
 	        return list;
 	        		
 	    }
+	  
+	  public BoardVO selectOne(int idx) {
+		   SqlSession sqlSession = factory.openSession();
+		   BoardDAO vo = sqlSession.selectOne("b.board_one",idx);
+		   sqlSession.close();
+		   return vo;
+				 
+	  }
+	  
+
+	  
+	  public int insert(BoardVO vo) {
+		  SqlSession sqlSession = factory.openSession(true);
+		  int res = sqlSession.insert("b.board_insert",vo);
+		  sqlSession.close();
+		  return res;
+	  }
+	  
+	  
+	  
+	  
 	  
 }
